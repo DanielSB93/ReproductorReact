@@ -20,7 +20,7 @@ La aplicacion simula un reproductor de mucsica. No reproduce nada pero creamos b
 
 ```bash
 # 1. Clonar el repositorio
-git clone <URL-del-repositorio>
+git clone https://github.com/DanielSB93/ReproductorReact
 cd ASanz
 
 # 2. Instalar las dependencias
@@ -59,7 +59,7 @@ App                        → guarda el estado compartido (tiempo, volumen, rep
 │   └── BarraInformacion   → mini-reproductor bajo la foto
 ├── ControlBar             → reproductor principal en una línea
 │   ├── BarraProgreso      → barra de tiempo
-│   ├── Botones            → reiniciar · play/pausa · avanzar
+│   ├── Botones            → reiniciar · play/pausa · cambio de cantante
 │   └── Volumen            → silencio + deslizador
 ├── GroupBox               → muestra de casillas en dos columnas
 │   └── CheckBox (×6)      → casilla con sus tres estados
