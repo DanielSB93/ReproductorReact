@@ -8,6 +8,8 @@ La aplicacion simula un reproductor de mucsica. No reproduce nada pero creamos b
   - Marcar casillas o seleccionar distintos menus o emojis
   - Cambio de cantante
 
+🔗 **Ver la aplicación desplegada:** [reproductor-react-one.vercel.app](https://reproductor-react-one.vercel.app/)
+
 ![Captura del resultado](./src/assets/AppReproductor.png)
 
 ---
@@ -21,7 +23,7 @@ La aplicacion simula un reproductor de mucsica. No reproduce nada pero creamos b
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/DanielSB93/ReproductorReact
-cd ASanz
+cd ReproductorReact
 
 # 2. Instalar las dependencias
 npm install
