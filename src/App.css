@@ -1,0 +1,257 @@
+/* =====================================================================
+   ESTILOS DE LOS COMPONENTES (App.css)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. HEADER
+   ---------------------------------------------------------------------
+   Nombre del artista (h1) y álbum (h2) centrados, con una línea
+   inferior que lo separa del resto del contenido.
+   ===================================================================== */
+.Header {
+  max-width: 800px;                 /* Mismo ancho que el resto de bloques */
+  margin: 20px auto 32px auto;         /* arriba | derecha | abajo | izquierda → centrado y 32px por debajo */
+  padding-bottom: 16px;             /* Espacio interno entre el texto y la línea */
+  border-bottom: 1px solid #444;    /* Línea que separa la cabecera del contenido */
+  text-align: center;               /* Centra el título y el álbum */
+}
+
+.Header h1 {
+  margin: 0 0 8px 0;                /* Quita el margen de arriba que trae h1 y deja 8px abajo */
+  font-size: 2.5rem;                /* rem = relativo al tamaño base de la página */
+  letter-spacing: 1px;              /* Un poco de separación entre letras */
+}
+
+.Header h2 {
+  margin: 0;                        /* Sin margen: pegado al título */
+  font-size: 1.3rem;
+  font-weight: 400;                 /* Peso normal: más ligero que el h1 → jerarquía visual */
+  color: #888;                      /* Gris: menos protagonismo que el título */
+}
+
+
+/* =====================================================================
+   2. SINGERINFO
+   ---------------------------------------------------------------------
+   Fila con dos columnas:
+     - .Photo: la foto y debajo el mini-reproductor (BarraInformacion)
+     - <p>:    la descripción, que ocupa el resto del ancho
+   ===================================================================== */
+.SingerInfo {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 0 auto;                   /* Centrado horizontal */
+  display: flex;                    /* Hijos uno al lado del otro */
+  align-items: center;              /* Texto centrado en vertical respecto a la foto */
+  gap: 24px;                        /* Separación entre foto y texto */
+}
+
+/* ---------- Columna izquierda: foto + mini-reproductor ---------- */
+.Photo {
+  width: 250px;                     /* La columna manda el ancho: foto y barra miden lo mismo */
+  display: flex;
+  flex-direction: column;           /* Foto arriba, barra debajo */
+  gap: 4px;                         /* Pequeña separación entre las dos */
+}
+
+.Photo img {
+  width: 100%;                      /* Ocupa todo el ancho de .Photo */
+  height: auto;                     /* Mantiene la proporción sin deformarla */
+  border-radius: 8px;               /* Esquinas ligeramente redondeadas */
+  object-fit: cover;                /* Si se forzara un alto, recorta en vez de deformar */
+}
+
+
+.Photo > div {
+  display: flex;                    /* Botones y barra en fila */
+  align-items: center;              /* Todos a la misma altura */
+  gap: 4px;
+}
+
+.Photo progress {
+  flex: 1;                          /* La barra se estira y ocupa el hueco entre los botones */
+  min-width: 0;                     /* Permite que encoja (por defecto flex no lo deja) */
+}
+
+.Photo button {
+  font-size: 0.7rem;                /* Botones pequeños para que quepan en 250px */
+  padding: 2px 4px;
+}
+
+/* ---------- Columna derecha: descripción ---------- */
+.SingerInfo p {
+  flex: 1;                /* Ocupa todo el espacio que deja la foto */
+  text-align: left;       /* Alineado a la izquierda */
+  line-height: 1.6;       /* Interlineado cómodo */
+  text-align: center;
+  white-space: pre-line;  /* Respeta los saltos de línea del texto */
+  max-height: 250px;      /* Alto máximo del recuadro (ajústalo a la altura de tu foto) */
+  overflow-y: auto;       /* Si el texto no cabe, sale una barra de scroll vertical */
+
+  margin: 0;              /* Quita el margen por defecto del <p> para que cuadre con la foto */
+  padding-right: 8px;     /* Hueco para que el texto no quede pegado a la barra de scroll */
+}
+
+
+/* =====================================================================
+   3. CONTROLBAR
+   ---------------------------------------------------------------------
+   Barra de progreso, botones (atrás, play, siguiente) y volumen,
+   TODO EN UNA MISMA LÍNEA.
+   Dentro hay 3 div sin className (BarraProgreso, Botones y Volumen),
+   en ese orden de izquierda a derecha.
+   ===================================================================== */
+.ControlBar {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 24px auto 0 auto;         /* 24px arriba y centrado */
+  padding: 16px;                    /* Espacio interno */
+
+  display: flex;                    /* Los 3 bloques en fila (dirección por defecto: row) */
+  align-items: center;              /* Alineados en vertical */
+  gap: 16px;                        /* Separación entre barra, botones y volumen */
+}
+
+/* Regla común para los 3 bloques: lo de dentro de cada uno también en fila */
+.ControlBar > div {
+  display: flex;
+  align-items: center;              /* Botones y barras a la misma altura */
+  gap: 8px;                         /* Espacio entre botones */
+}
+
+/* :first-child = el primer hijo → el div de BarraProgreso.
+   flex: 1 hace que se estire y ocupe todo el espacio que dejan
+   los botones y el volumen. */
+.ControlBar > div:first-child {
+  flex: 1;
+}
+
+/* La <progress> ocupa todo el ancho de su div */
+.ControlBar progress {
+  width: 100%;
+}
+
+/* El deslizador de volumen, con un ancho fijo para que no sea enorme */
+.ControlBar input[type="range"] {    /* [type="range"] = solo los input de ese tipo */
+  width: 100px;
+}
+
+
+/* =====================================================================
+   4. GROUPBOX (casillas)
+   ---------------------------------------------------------------------
+   Rejilla de 2 columnas. Grid rellena por FILAS, así que con el orden
+   del JSX (not, not, selected, selected, indet., indet.) cada estado
+   queda en su fila.
+   ===================================================================== */
+.GroupBox {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 24px auto 0 auto;         /* 24px arriba y centrado */
+  padding: 16px;
+  
+  display: grid;                    /* Activa la rejilla */
+  grid-template-columns: auto auto;   /* 2 columnas iguales (fr = fracción del espacio libre) */
+  justify-content: space-around;
+  gap: 8px;                         /* Separación entre filas y columnas */
+}
+
+.GroupBox label {
+  display: flex;                    /* Casilla y texto en fila */
+  align-items: center;              /* A la misma altura */
+  gap: 8px;                         /* Espacio entre la casilla y el texto */
+}
+
+
+/* =====================================================================
+   5. BUSCADOR
+   ---------------------------------------------------------------------
+   El div hace de "píldora" (borde + esquinas redondeadas) y dentro
+   van la lupa y el input sin borde propio.
+   ===================================================================== */
+.Buscador {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 24px auto 0 auto;         /* 24px arriba y centrado */
+  box-sizing: border-box;           /* El padding y el borde cuentan dentro de los 800px */
+
+  display: flex;                    /* Lupa e input en fila */
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 16px;                /* 8px arriba/abajo, 16px a los lados */
+  border: 1px solid #999;           /* El borde lo lleva el contenedor, no el input */
+  border-radius: 999px;             /* Radio enorme = forma de píldora */
+  background-color: white;
+}
+
+.Buscador input {
+  flex: 1;                          /* Ocupa todo el espacio que deja la lupa */
+  border: none;                     /* Sin borde propio (ya lo tiene la píldora) */
+  outline: none;                    /* Sin el recuadro que sale al hacer clic */
+  background: transparent;          /* Que se vea el fondo blanco de la píldora */
+  font-size: 1.1rem;
+  color: black;                     /* Negro siempre, aunque el sistema esté en modo oscuro */
+}
+
+
+/* =====================================================================
+   6. CARRUSEL
+   ---------------------------------------------------------------------
+   Emojis en fila y centrados; el .destacado, más grande y con borde.
+   .destacado va DESPUÉS de la regla general de los botones para que
+   sus valores ganen (cascada: a igual fuerza, gana el de más abajo).
+   ===================================================================== */
+.Carrusel {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 24px auto 0 auto;         /* 24px arriba y centrado */
+  padding: 16px;
+
+  display: flex;                    /* Emojis en fila */
+  justify-content: center;          /* Agrupados en el centro */
+  align-items: center;              /* Los pequeños, centrados respecto al grande */
+  gap: 16px;                        /* Separación entre emojis */
+}
+
+.Carrusel button {
+  font-size: 2.5rem;                /* Los emojis son texto: se agrandan con font-size */
+  background: none;                 /* Sin el fondo gris por defecto del botón */
+  border: none;                     /* Sin el borde por defecto */
+  padding: 8px;                     /* Aire alrededor (para el borde del destacado) */
+  cursor: pointer;                  /* Manita al pasar por encima */
+}
+
+.Carrusel .destacado {
+  border: 3px solid #333;           /* Borde que lo marca como seleccionado */
+  border-radius: 16px;              /* Esquinas redondeadas */
+  transform: scale(1.4);            /* 1,4 veces más grande */
+}
+
+
+/* =====================================================================
+   7. NAVEGADOR (barra inferior)
+   ---------------------------------------------------------------------
+   Tres iconos repartidos a lo ancho, separados por una línea superior.
+   ===================================================================== */
+.Navegador {
+  max-width: 800px;                 /* Mismo ancho que el resto */
+  margin: 24px auto 0 auto;         /* 24px arriba y centrado */
+  padding: 12px 16px;
+  border-top: 1px solid #ccc;       /* Línea fina que la separa de lo de arriba */
+
+  display: flex;                    /* Iconos en fila */
+  justify-content: space-around;    /* Mismo espacio alrededor de cada icono */
+  align-items: center;
+}
+
+.Navegador button {
+  font-size: 2rem;                  /* Tamaño de los iconos */
+  background: none;                 /* Sin el estilo por defecto del botón */
+  border: none;
+  padding: 6px 16px;                /* Aire para que se vea el fondo del destacado */
+  border-radius: 12px;
+  cursor: pointer;                  /* Manita al pasar por encima */
+  transition: background-color 0.2s;  /* El fondo aparece suave en 0,2 s */
+}
+
+/* Icono de la sección activa */
+.Navegador .destacado {
+  background-color: #e0e0e0;        /* Fondo gris suave */
+}
